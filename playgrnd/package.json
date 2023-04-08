@@ -1,0 +1,12 @@
+{
+  "name": "playgrnd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "8-promises.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
