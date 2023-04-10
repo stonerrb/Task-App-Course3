@@ -9,10 +9,32 @@ const taskRouter = require("./router/task")
 const app = express();
 const port = process.env.PORT || 3000
 
+app.use((req,res,next) => {
+    if(req.method === "GET"){
+        res.send('GET request are disabled')
+    }else {
+        next()
+    }
+})
+
+app.use((req,res,next) => {
+    res.status(503).send("The server is currently undergoing maintainance")
+})
+
 // show output on screen
 app.use(express.json())
 app.use(userRouter)
 app.use(taskRouter)
+
+// Diagram Working with middleware
+//NOTE :- This may hinder the working of the whole application, most changes should be provided by githud, just in case i am putting this comment /in changed spaces at the end 
+//*//
+
+//
+// Without middleware: new request -> run route handler
+//
+// With middeware: new request -> do something -> run route handler
+//
 
 const jwt = require("jsonwebtoken")
 
