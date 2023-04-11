@@ -9,6 +9,13 @@ const taskRouter = require("./router/task")
 const app = express();
 const port = process.env.PORT || 3000
 
+// a login id
+// {
+//    "email": "jpop@gmail.com",
+//    "password": "osaka@12345"
+//}
+
+
 // app.use((req,res,next) => {
 //     if(req.method === "GET"){
 //         res.send('GET request are disabled')
@@ -17,9 +24,9 @@ const port = process.env.PORT || 3000
 //     }
 // })
 
-app.use((req,res,next) => {
-    res.status(503).send("The server is currently undergoing maintainance")
-})
+// app.use((req,res,next) => {
+//     res.status(503).send("The server is currently undergoing maintainance")
+// })
 
 // show output on screen
 app.use(express.json())
@@ -40,12 +47,11 @@ const jwt = require("jsonwebtoken")
 
 const myFun = async () => {
     const token = jwt.sign({_id:'abc123'}, 'isthisthetoken', {expiresIn: '7 days'})
-    console.log(token)
 
     console.log(jwt.verify(token,'isthisthetoken'))
 }
 
-myFun()
+//myFun()
 
 //console message to check port status
 app.listen(port, () => {

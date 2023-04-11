@@ -51,9 +51,10 @@ const userSchema = new mongoose.Schema({
     }]
 })
 
-userSchema.methods.generateAuthToken = async function (){
+
+userSchema.methods.generateAuthToken = async function () {
     const user = this
-    const token = jwt.sign({ _id: user._id.toString() }, 'sthisthetoken  ')
+    const token = jwt.sign({ _id: user._id.toString() }, 'isthisthetoken')
 
     user.tokens = user.token.concat({ token })
     await user.save()
@@ -62,7 +63,7 @@ userSchema.methods.generateAuthToken = async function (){
 }
 
 userSchema.statics.findByCredentials = async (email,password) => {
-    const user = await User.findOne({email: email})
+    const user = await User.findOne({email:email})
 
     if(!user){ 
         throw new Error("No User found with diz email")
@@ -88,4 +89,6 @@ userSchema.pre('save', async function (next){
     next()
 })
 
-module.exports = mongoose.model('User',userSchema)
+const User = mongoose.model('User',userSchema)
+
+module.exports = User
